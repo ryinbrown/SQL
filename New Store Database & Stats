@@ -1,0 +1,28 @@
+-- Create a new store database.
+CREATE TABLE store (id INTEGER PRIMARY KEY, Item TEXT, Quantity INTEGER, Weight_lbs INTEGER, Price INTEGER);
+
+-- Inserting new items into the store database.
+INSERT INTO store VALUES (1, "AA Magnetic Rechargeable Batteries 4 ct", 50, 0.2, 9.99);
+INSERT INTO store VALUES (2, "AAA Magnetic Rechargeable Batteries 4 ct", 50, 0.15, 7.99);
+INSERT INTO store VALUES (3, "AA USB Rechargeable Batteries 4 ct", 50, 0.2, 9.99);
+INSERT INTO store VALUES (4, "AAA USB Rechargeable Batteries 4 ct", 50, 0.15, 7.99);
+INSERT INTO store VALUES (5, "C USB Rechareable Batteries 2 ct", 20, 0.3, 10.99);
+INSERT INTO store VALUES (6, "D USB Rechargeable Batteries 2 ct", 50, 0.5, 12.99);
+INSERT INTO store VALUES (7, "Battery Carrying Case", 50, 0.1, 6.99);
+INSERT INTO store VALUES (8, "Personal Portable Solar Panel", 25, 1.3, 39.99);
+INSERT INTO store VALUES (9, "Mini Portable 10000 mAh Battery Bank", 15, 0.8, 29.99);
+INSERT INTO store VALUES (10, "Portable 25000 mAh Battery Bank w/Solar Panel", 25, 1.5, 49.99);
+INSERT INTO store VALUES (11, "1000W Portable Power Station", 15, 3.0, 299.99);
+INSERT INTO store VALUES (12, "2000W Portable Power Station", 15, 4.2, 399.99);
+INSERT INTO store VALUES (13, "Rechargeable Magnetic Camp Lantern", 30, 1.1, 39.99);
+INSERT INTO store VALUES (14, "Rechargeable Bar Headlamp", 25, 0.4, 39.99);
+INSERT INTO store VALUES (15, "Rechargeable Cob Light", 25, 0.3, 29.99);
+
+-- Display the database ordered by descending price.
+SELECT * FROM store ORDER BY Price DESC;
+
+-- What is the average price for items less than 1 lbs?
+SELECT AVG(price) "Average item price" FROM store WHERE Weight_lbs<1;
+
+-- Display the total items from the database.
+SELECT SUM(Quantity) FROM store;
