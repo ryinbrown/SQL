@@ -58,3 +58,25 @@ SELECT body, surface_gravity FROM solar_system_objects WHERE surface_gravity < 9
 
 -- Lists the terrestrial and dwarf planets by descending radius.
 SELECT body, mean_radius FROM solar_system_objects WHERE type_of_object LIKE "%terrestrial%" OR type_of_object LIKE "%dwarf%" ORDER BY mean_radius DESC;
+
+-- Comparing relative volume between solar system objects and Earth.
+SELECT body, volume_rel,
+    CASE 
+        WHEN volume_rel > 10 THEN "It's massive"
+        WHEN volume_rel = 1 THEN "Earth is Earth"
+        WHEN volume_rel > 0.05 THEN "Relatively around Earth's volume"
+        ELSE "Lighweight"
+    END AS "volume_comp"
+FROM solar_system_objects;
+
+-- Count of the previous categories of relative volume comparison.
+SELECT COUNT(*),
+    CASE 
+        WHEN volume_rel > 10 THEN "It's massive"
+        WHEN volume_rel = 1 THEN "Earth is Earth"
+        WHEN volume_rel > 0.05 THEN "Relatively around Earth's volume"
+        ELSE "Lighweight"
+    END AS "volume_comp"
+FROM solar_system_objects
+GROUP BY volume_comp;
+
