@@ -1,0 +1,76 @@
+
+-- From my fantasy book ideas, as a hobby. Series have no official title as of yet and are currently simply known by numbers. Series 1, 3 and 4 are fantasy based while Series 2 is mythology based.
+
+CREATE TABLE characters (id INTEGER PRIMARY KEY, 
+    name TEXT,
+    series_num INTEGER,
+    age INTEGER, 
+    sex TEXT, 
+    race TEXT, 
+    classification TEXT); 
+
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Kaeya", 1, 28, "F", "Human-giant", "World Traveler");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Haakon", 1, 18, "M", "Umris", "Mortal");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Crim", 1, NULL, "M", "Human", "World Traveler");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Freyja", 2, NULL, "F", "Vanir", "Deity");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Magni", 2, NULL, "M", "Aesir", "Deity");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Ralak", 3, NULL, "M", "Human", "Empyrean");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Marroquin", 1, 65, "M", "Djinn", "Djinn");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Rao", 1, 24, "M", "Haaldun", "Mortal");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Koen", 4, NULL, "M", "Unknown", "Empyrean");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("Astraea", 2, "22", "F", "Human", "Demigod");
+INSERT INTO characters (name, series_num, age, sex, race, classification)
+    VALUES ("The Hunter", 1, "33", "F", "Haald", "Mortal");
+
+
+CREATE TABLE attributes (id INTEGER PRIMARY KEY,
+    character_id INTEGER, 
+    primary_weapon TEXT, 
+    magic_user TEXT, 
+    immortal TEXT);
+
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (1, "Lightning", "Yes", "Yes");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (2, "Dual Axes", "No", "No");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (3, "Dagger", "Yes", "Yes");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (4, "Magic", "Yes", "Yes");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (5, "Mjolnir", "Yes", "Yes");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (6, "Star Blade", "Yes", "Yes");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (7, "Magic", "Yes", "No");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (8, "Sword", "No", "No");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (9, "Whip", "No", "Yes");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (10, "Sword", "No", "No");
+INSERT INTO attributes (character_id, primary_weapon, magic_user, immortal)
+    VALUES (11, "Bow", "No", "No");
+
+-- Which characters are immortal?
+SELECT characters.name 
+FROM characters
+JOIN attributes
+ON characters.id = attributes.character_id
+WHERE immortal = "Yes";
+
+-- How many characters are in each book series?
+SELECT series_num AS Series, COUNT(series_num) AS num_of_characters
+FROM characters
+GROUP BY series_num;
+
